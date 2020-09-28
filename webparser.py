@@ -15,8 +15,12 @@ def retrieveURL(turl):
         linkstring = link.get('href')
         if linkstring is not None:
             if linkstring[0:4].lower() == 'http': # ignoring anchors etc...
-                print('\t' + linkstring)
-                currentpagelinks.append(linkstring)
+                if args.internal and domain in linkstring:
+                    print('\t' + linkstring)
+                    currentpagelinks.append(linkstring)
+                if args.external and domain not in linkstring:
+                    print('\t' + linkstring)
+                    currentpagelinks.append(linkstring)    
         
     if currentpagelinks: # we have links to follow
         for linkstring in currentpagelinks:
@@ -29,7 +33,13 @@ my_parser.add_argument('url',
                        metavar='url',
                        type=str,
                        help='the URL to crawl - for example: http://onecloudstreet.com')
+my_parser.add_argument("-i", "--internal", help="only list internal links (to the TLD)", action="store_true")
+my_parser.add_argument("-e", "--external", help="only list external links (to the TLD)", action="store_true")
+
 args = my_parser.parse_args()
+if not args.internal and not args.external: # in case the -i AND -e options are not specified
+    args.internal = True                    # we want them to be both true to show everything
+    args.external = True
 target = args.url
 ext = tldextract.extract(target)
 domain = ext.registered_domain
