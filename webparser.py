@@ -1,6 +1,7 @@
 import requests
 import bs4
 import argparse
+import tldextract
 
 alreadyvisited = [] # list of urls that have already been crawled
 
@@ -13,13 +14,13 @@ def retrieveURL(turl):
     for link in soup.find_all('a'):
         linkstring = link.get('href')
         if linkstring is not None:
-            if linkstring[0:4] == 'http': # ignoring anchors etc...
-                print(linkstring)
+            if linkstring[0:4].lower() == 'http': # ignoring anchors etc...
+                print('\t' + linkstring)
                 currentpagelinks.append(linkstring)
         
     if currentpagelinks: # we have links to follow
         for linkstring in currentpagelinks:
-            if not linkstring in alreadyvisited:
+            if not linkstring in alreadyvisited and domain in linkstring:
                 retrieveURL(linkstring)
 
 
@@ -30,5 +31,8 @@ my_parser.add_argument('url',
                        help='the URL to crawl - for example: http://onecloudstreet.com')
 args = my_parser.parse_args()
 target = args.url
+ext = tldextract.extract(target)
+domain = ext.registered_domain
+print ("#### Domain: "+ domain)
 retrieveURL(target)
 
