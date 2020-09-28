@@ -48,6 +48,8 @@ _usage: webparser.py [-h] [-i] [-e] url_
 > `-e, --external  only list external links (to the TLD)`
 
 *Potential Improvements*
+* Better memory handling as we have a lot of duplicates
+* Identify direct links to file (to avoid downloading)
 * Handling relative links (<a href="/pages/"...>)
 * detecting/filtering on https vs http links
 * use a set (no duplicates) to track unique links
