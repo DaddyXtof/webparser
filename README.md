@@ -52,5 +52,6 @@ _usage: webparser.py [-h] [-i] [-e] url_
 * detecting/filtering on https vs http links
 * use a set (no duplicates) to track unique links
 * better visual representation (indentation with tabulations)
+* integrate pytest with argparse for automated testing
 
 ![Demo](screencap1.gif)
