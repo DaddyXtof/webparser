@@ -1,22 +1,20 @@
-"# webparser" 
 Crawler exercise progress:
-From memory I believe it is possible to crawl/download a site using
+I initialy looked at the option of crawling/downloading a site using
 wget. It may be possible to generate the map file from a wget ouptut.
-Indeed - after doing some browsing and checking this page
+After doing some browsing and checking this page
 (https://www.labnol.org/software/wget-command-examples/28750/) it
-appears that the following wget command will retrieve the site:
+appeared that the following wget command would retrieve the site:
 
 `wget ‐‐output-file=logfile.txt ‐‐recursive -nd ‐‐spider http://wiprodigital.com`
 
-It seems to work but the log file generated contains more than what we
+It seemed to work but the log file generated contains more than what we
 are trying to generate and would need parsing. There are probably ways
 to do this parsing with regular expression and a corresponding shell
 utility but this is not something I am immediately familiar with.
-When working with Python I do recall mentions of Beautiful Soup as a
-web scraper library that may be of use here.
+I then looked into doing this with Python. When working with Python 
+I recalled mentions of Beautiful Soup as a web scraper library that may be of use here.
 
-
-What we want to create is a CLI python application which can take the
+I aimed to create a CLI python application which can take the
 following arguments:
 
 > `webparser.py http://someurl.com`
@@ -25,11 +23,11 @@ following arguments:
 * Option: -i only show links for the current domain
 * Option: -e only show links for external sites
 
-We will need to retrieve the HTML content and parse it. So we need the
-library requests (to issue the HTTP request) and beautifulsoup to
+In order to retrieve the HTML content and parse it we use the
+library *requests* (to issue the HTTP request) and *beautifulsoup* to
 parse the content and navigate it.  We want this to be a CLI tool so
-we can use the argparse library to manage arguments elegantly.  I also
-added tldextract library in order to retrieve the top level domain
+we can use the *argparse* library to manage arguments elegantly. I also
+used the *tldextract* library in order to retrieve the top level domain
 of the URL.
 
 ----
