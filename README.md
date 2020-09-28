@@ -1,5 +1,5 @@
 "# webparser" 
-* Crawler exercise progress:
+Crawler exercise progress:
 From memory I believe it is possible to crawl/download a site using
 wget. It may be possible to generate the map file from a wget ouptut.
 Indeed - after doing some browsing and checking this page
@@ -21,7 +21,9 @@ following arguments:
 > webparser.py http://someurl.com
 
 ** required: URL to scrape
+
 ** Option: only show links for the current domain
+
 ** Option: only show links for external sites
 
 We will need to retrieve the HTML content and parse it. So we need the
@@ -38,9 +40,9 @@ usage: webparser.py [-h] [-i] [-e] url
 Crawl URL and list all <a> links found
 
 positional arguments:
-  url             the URL to crawl - for example: http://onecloudstreet.com
+> url             the URL to crawl - for example: http://onecloudstreet.com
 
 optional arguments:
-  -h, --help      show this help message and exit
-  -i, --internal  only list internal links (to the TLD)
-  -e, --external  only list external links (to the TLD)
+> -h, --help      show this help message and exit
+> -i, --internal  only list internal links (to the TLD)
+> -e, --external  only list external links (to the TLD)
