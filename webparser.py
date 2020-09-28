@@ -1,6 +1,6 @@
 import requests
 import bs4
-import argparse
+from  argparse import ArgumentParser
 import tldextract
 
 alreadyvisited = []  # list of urls that have already been crawled
@@ -28,7 +28,7 @@ def retrieveURL(turl):
                 retrieveURL(linkstring)
 
 
-my_parser = argparse.ArgumentParser(description='Crawl URL and list all <a> links found')
+my_parser = ArgumentParser(description='Crawl URL and list all <a> links found')
 my_parser.add_argument('url',
                        metavar='url',
                        type=str,
